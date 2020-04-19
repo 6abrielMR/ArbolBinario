@@ -8,65 +8,66 @@ package arbolbinario;
 /**
  *
  * @author gabriel
+ * @param <T>
  */
-public class NodoArbolBinario<T extends Comparable<T>> {
+public class NodoArbolBinario<T extends Comparable<T>> extends ManagerEngine {
     
     private T element;
     private NodoArbolBinario<T> parent;
     private NodoArbolBinario<T> left;
     private NodoArbolBinario<T> right;
 
-    public NodoArbolBinario(T element) {
+    protected NodoArbolBinario(T element) {
         this.element = element;
     }
 
-    public NodoArbolBinario(T element, NodoArbolBinario<T> parent, NodoArbolBinario<T> left, NodoArbolBinario<T> right) {
+    protected NodoArbolBinario(T element, NodoArbolBinario<T> parent, NodoArbolBinario<T> left, NodoArbolBinario<T> right) {
         this.element = element;
         this.parent = parent;
         this.left = left;
         this.right = right;
     }
 
-    public NodoArbolBinario(T element, NodoArbolBinario<T> parent) {
+    protected NodoArbolBinario(T element, NodoArbolBinario<T> parent) {
         this.element = element;
         this.parent = parent;
     }
 
-    public NodoArbolBinario(T element, NodoArbolBinario<T> left, NodoArbolBinario<T> right) {
+    protected NodoArbolBinario(T element, NodoArbolBinario<T> left, NodoArbolBinario<T> right) {
         this.element = element;
         this.left = left;
         this.right = right;
     }
 
-    public T getElement() {
+    protected T getElement() {
         return element;
     }
 
-    public void setElement(T element) {
+    protected void setElement(T element) {
         this.element = element;
     }
 
-    public NodoArbolBinario<T> getParent() {
+    protected NodoArbolBinario<T> getParent() {
         return parent;
     }
 
-    public void setParent(NodoArbolBinario<T> parent) {
+    protected void setParent(NodoArbolBinario<T> parent) {
         this.parent = parent;
     }
 
-    public NodoArbolBinario<T> getLeft() {
+    protected NodoArbolBinario<T> getLeft() {
         return left;
     }
 
-    public void setLeft(NodoArbolBinario<T> left) {
+    protected void setLeft(NodoArbolBinario<T> left) {
         this.left = left;
     }
 
-    public NodoArbolBinario<T> getRight() {
+    protected NodoArbolBinario<T> getRight() {
         return right;
     }
 
-    public void setRight(NodoArbolBinario<T> right) {
+    protected void setRight(NodoArbolBinario<T> right) {
         this.right = right;
     }
     

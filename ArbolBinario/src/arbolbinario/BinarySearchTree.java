@@ -10,35 +10,40 @@ package arbolbinario;
  * @author gabriel
  * 
  * TreeManager
+ * @param <T>
  * 
  */
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> extends NodoArbolBinario {
 
     private NodoArbolBinario<T> root;
 
-    public boolean isEmpty() {
+    protected BinarySearchTree(Comparable element) {
+        super(element);
+    }
+
+    protected boolean isEmpty() {
         return root == null;
     }
 
-    public NodoArbolBinario<T> getRoot() {
+    protected NodoArbolBinario<T> getRoot() {
         return root;
     }
 
-    public boolean isRoot(NodoArbolBinario<T> node) {
+    protected boolean isRoot(NodoArbolBinario<T> node) {
         return root == node;
     }
 
     // If the node has no sons
-    public boolean isLeaf(NodoArbolBinario<T> node) {
+    protected boolean isLeaf(NodoArbolBinario<T> node) {
         return node.getLeft() == null && node.getRight() == null;
     }
 
     // if the node has sons
-    public boolean isInternal(NodoArbolBinario<T> node) {
+    protected boolean isInternal(NodoArbolBinario<T> node) {
         return !isLeaf(node);
     }
 
-    public NodoArbolBinario<T> add(NodoArbolBinario<T> origen, T element) {
+    protected NodoArbolBinario<T> add(NodoArbolBinario<T> origen, T element) {
         NodoArbolBinario<T> node = null;
 
         if (root == null) {
@@ -68,7 +73,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node;
     }
 
-    public NodoArbolBinario<T> add(T element) {
+    protected boolean add(T element) {
         NodoArbolBinario<T> node = null;
 
         if (root == null) {
@@ -99,11 +104,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 }
             }
         }
-
-        return node;
+        
+        return true;
     }
     
-    public void preorder(NodoArbolBinario<T> nodo) {
+    protected void preorder(NodoArbolBinario<T> nodo) {
     
         System.out.println(nodo.getElement().toString());
         
@@ -117,7 +122,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         
     }
     
-    public void inorder(NodoArbolBinario<T> nodo) {
+    protected void inorder(NodoArbolBinario<T> nodo) {
         
         if (nodo.getLeft() != null) {
             preorder(nodo.getLeft());
@@ -131,7 +136,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         
     }
     
-    public void postorder(NodoArbolBinario<T> nodo) {
+    protected void postorder(NodoArbolBinario<T> nodo) {
         
         if (nodo.getLeft() != null) {
             preorder(nodo.getLeft());
