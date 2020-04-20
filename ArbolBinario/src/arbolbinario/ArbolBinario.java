@@ -20,29 +20,38 @@ public class ArbolBinario {
         Comparable T = null;
         BinarySearchTree<Integer> tree = new BinarySearchTree<>(T);
         int opcMenu = 0;
-
-        if (tree.isRoot(tree)) {
+        
+        if (!tree.isRoot(tree)) {
             printerMenu(tree, opcMenu, false);
-        }else {
+        } else {
             printerMenu(tree, opcMenu, true);
         }
 
     }
 
-    private static void addNodeTree(BinarySearchTree<Integer> tree) {
+    private static void addNodeTree(BinarySearchTree<Integer> tree, boolean mode) {
         String value = JOptionPane.showInputDialog(null,
                 "Digita el número del nodo");
         if (ManagerEngine.isValidateNode(value)) {
-            if (tree.add(Integer.parseInt(value))) {
+            if (mode) {
+                if (tree.add(Integer.parseInt(value))) {
+                    JOptionPane.showMessageDialog(null,
+                            "Nodo raíz añadido correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Nodo no añadido correctamente");
+                }
+            } else {
+                tree.add(tree.getRoot(), Integer.parseInt(value));
                 JOptionPane.showMessageDialog(null,
-                        "Nodo raíz añadido correctamente");
+                            "Nodo raíz añadido correctamente");
             }
         } else {
             JOptionPane.showMessageDialog(null,
                     "Debes digitar un número");
         }
     }
-    
+
     private static void printerMenu(BinarySearchTree<Integer> tree, int opcMenu, boolean created) {
         if (!created) {
             do {
@@ -50,7 +59,11 @@ public class ArbolBinario {
                         + "1. Agregar Nodo Raiz\n"
                         + "2. Salir"));
 
-                if (opcMenu == 1) addNodeTree(tree);
+                if (opcMenu == 1) {
+                    addNodeTree(tree, true);
+                    created = true;
+                    opcMenu = 2;
+                }
 
             } while (opcMenu != 2);
         } else {
@@ -64,7 +77,11 @@ public class ArbolBinario {
                         + "6. Salir"));
 
                 switch (opcMenu) {
+                    case 1:
+                        addNodeTree(tree, true);
+                        break;
                     case 2:
+                        addNodeTree(tree, false);
                         break;
                     case 3:
                         tree.preorder(tree.getRoot());
@@ -78,7 +95,14 @@ public class ArbolBinario {
                 }
 
             } while (opcMenu != 6);
+            
+            created = false;
         }
+        if (created) {
+            System.out.println("Entrando...");
+            printerMenu(tree, 0, created);
+        }
+        else System.out.println("Saliendo del Sistema....");
     }
 
 }
